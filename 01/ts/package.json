@@ -1,0 +1,64 @@
+{
+  "name": "AOC2024_01",
+  "version": "1.0.0",
+  "description": "Advent-of-code 2024 Day 01",
+  "homepage": "https://github.com/filscentia/aoc-2024",
+  "bugs": {
+    "url": "https://github.com/filscentia/aoc-2024"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filscentia/aoc-2024.git"
+  },
+  "license": "Apache-2.0",
+  "author": "mbw",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "main": "index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "prebuild": "npm run format && npm run clean && npm run lint",
+    "build": "echo Using TypeScript && tsc --version && tsc -p tsconfig.build.json --pretty",
+    "clean": "rimraf dist",
+    "start": "node dist/main.js",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
+    "licchk": "license-check-and-add check",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "test": "NODE_NO_WARNINGS=1 jest",
+    "test:ci": "jest --ci --collectCoverage",
+    "test:watch": "jest --watchAll",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.1",
+    "@types/source-map-support": "^0.5.10",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-watch-typeahead": "^2.2.2",
+    "prettier": "^3.4.1",
+    "rimraf": "^6.0.1",
+    "standard-version": "^9.5.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
