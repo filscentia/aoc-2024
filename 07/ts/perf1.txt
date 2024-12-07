@@ -1,0 +1,315 @@
+Statistical profiling result from isolate-0x5e5f300-171780-v8.log, (12514 ticks, 6639 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   1774   14.2%          /usr/lib/x86_64-linux-gnu/libc-2.31.so
+      3    0.0%          /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+      2    0.0%          [vdso]
+      1    0.0%          /home/matthew/.nvm/versions/node/v20.11.1/bin/node
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+   1077    8.6%   10.0%  JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:47:54
+    163    1.3%    1.5%  JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    128    1.0%    1.2%  JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+     39    0.3%    0.4%  JS: *_valid file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:54:11
+      3    0.0%    0.0%  JS: ^<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:47:54
+      2    0.0%    0.0%  JS: ^asString /home/matthew/github.com/filscentia/aoc-2024/07/ts/node_modules/pino/lib/tools.js:81:19
+
+ [C++]:
+   ticks  total  nonlib   name
+   1171    9.4%   10.9%  __pthread_cond_wait
+    412    3.3%    3.8%  __write
+    190    1.5%    1.8%  __madvise
+    172    1.4%    1.6%  __munmap
+    147    1.2%    1.4%  __mmap
+    134    1.1%    1.2%  __pthread_cond_signal
+    115    0.9%    1.1%  __mprotect
+    105    0.8%    1.0%  __GI___pthread_mutex_unlock
+     80    0.6%    0.7%  __lll_lock_wait
+     55    0.4%    0.5%  __pthread_cond_timedwait
+     17    0.1%    0.2%  __GI___pthread_mutex_lock
+     16    0.1%    0.1%  __pthread_mutex_unlock_usercnt
+     14    0.1%    0.1%  __libc_malloc
+      8    0.1%    0.1%  _IO_file_xsputn
+      7    0.1%    0.1%  _IO_fwrite
+      6    0.0%    0.1%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      5    0.0%    0.0%  __libc_free
+      4    0.0%    0.0%  __getpid
+      3    0.0%    0.0%  std::ostream::sentry::sentry(std::ostream&)
+      3    0.0%    0.0%  __pthread_clockjoin_ex
+      3    0.0%    0.0%  __GI___pthread_rwlock_wrlock
+      2    0.0%    0.0%  operator new(unsigned long)
+      2    0.0%    0.0%  isprint
+      2    0.0%    0.0%  __popcountdi2
+      1    0.0%    0.0%  std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<unsigned long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, unsigned long) const
+      1    0.0%    0.0%  std::ostream& std::ostream::_M_insert<long>(long)
+      1    0.0%    0.0%  std::locale::id::_M_id() const
+      1    0.0%    0.0%  std::__detail::_Prime_rehash_policy::_M_next_bkt(unsigned long) const
+      1    0.0%    0.0%  std::__detail::_List_node_base::_M_hook(std::__detail::_List_node_base*)
+      1    0.0%    0.0%  posix_memalign
+      1    0.0%    0.0%  malloc_usable_size
+      1    0.0%    0.0%  do_futex_wait.constprop.0
+      1    0.0%    0.0%  brk
+      1    0.0%    0.0%  __pthread_rwlock_init
+
+ [Summary]:
+   ticks  total  nonlib   name
+   1412   11.3%   13.2%  JavaScript
+   2683   21.4%   25.0%  C++
+   6790   54.3%   63.3%  GC
+   1780   14.2%          Shared libraries
+   6639   53.1%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+    118   43.9%    0.9%  __write
+     55   20.4%    0.4%  __pthread_cond_timedwait
+     21    7.8%    0.2%  __mprotect
+     18    6.7%    0.1%  __mmap
+      7    2.6%    0.1%  __munmap
+      7    2.6%    0.1%  __GI___pthread_mutex_unlock
+      7    2.6%    0.1%  _IO_file_xsputn
+      5    1.9%    0.0%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      5    1.9%    0.0%  __pthread_cond_signal
+      5    1.9%    0.0%  _IO_fwrite
+      4    1.5%    0.0%  __madvise
+      4    1.5%    0.0%  __libc_malloc
+      3    1.1%    0.0%  std::ostream::sentry::sentry(std::ostream&)
+      2    0.7%    0.0%  __lll_lock_wait
+      1    0.4%    0.0%  std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<unsigned long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, unsigned long) const
+      1    0.4%    0.0%  std::ostream& std::ostream::_M_insert<long>(long)
+      1    0.4%    0.0%  std::locale::id::_M_id() const
+      1    0.4%    0.0%  std::__detail::_List_node_base::_M_hook(std::__detail::_List_node_base*)
+      1    0.4%    0.0%  isprint
+      1    0.4%    0.0%  brk
+      1    0.4%    0.0%  __libc_free
+      1    0.4%    0.0%  __GI___pthread_rwlock_wrlock
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   6639   53.1%  UNKNOWN
+   1924   29.0%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:47:54
+   1924  100.0%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+   1924  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+   1924  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+    668   10.1%    JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    668  100.0%      JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    668  100.0%        Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+    410    6.2%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    303   73.9%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    303  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    303  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+    107   26.1%      JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     78   72.9%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     78  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     78  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     29   27.1%        JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     19   65.5%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     19  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     10   34.5%          JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      8   80.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      2   20.0%            JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    292    4.4%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+    280   95.9%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    205   73.2%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    205  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    205  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     75   26.8%        JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     55   73.3%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     55  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     20   26.7%          JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     11   55.0%            JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      9   45.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     12    4.1%      JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      9   75.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      9  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      9  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      3   25.0%        JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      2   66.7%          JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1   50.0%            JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1   50.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1   33.3%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    157    2.4%    JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    111   70.7%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    111  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    111  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     46   29.3%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     34   73.9%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     34  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     34  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     12   26.1%        JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     10   83.3%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     10  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      2   16.7%          JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      2  100.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+
+   1774   14.2%  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+    172    9.7%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    136   79.1%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    136  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    136  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     36   20.9%      JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     31   86.1%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     31  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     31  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      5   13.9%        JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      3   60.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      3  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      2   40.0%          JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      2  100.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    130    7.3%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+    120   92.3%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     93   77.5%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     93  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     93  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     27   22.5%        JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     22   81.5%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     22  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      5   18.5%          JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      4   80.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1   20.0%            JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     10    7.7%      JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      7   70.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      7  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      7  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      3   30.0%        JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      3  100.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      3  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+
+   1171    9.4%  __pthread_cond_wait
+
+   1077    8.6%  JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:47:54
+   1077  100.0%    JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+   1077  100.0%      JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+   1077  100.0%        Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+
+    412    3.3%  __write
+     54   13.1%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     31   57.4%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     31  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     31  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     23   42.6%      JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     20   87.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     20  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     20  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      3   13.0%        JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      3  100.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      3  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     23    5.6%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+     22   95.7%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     16   72.7%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     16  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     16  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      6   27.3%        JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      5   83.3%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      5  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      1   16.7%          JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1  100.0%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1    4.3%      JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1  100.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      1  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+
+    190    1.5%  __madvise
+      4    2.1%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      3   75.0%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      3  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      3  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      1   25.0%      JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1  100.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      1  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+
+    172    1.4%  __munmap
+      4    2.3%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      4  100.0%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      4  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      4  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      3    1.7%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+      3  100.0%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      3  100.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      3  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      3  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+
+    163    1.3%  JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+    106   65.0%    JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+    106  100.0%      JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+    106  100.0%        Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     57   35.0%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     45   78.9%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     45  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     45  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     12   21.1%      JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      7   58.3%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      7  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      7  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      5   41.7%        JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      4   80.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      4  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      1   20.0%          JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1  100.0%            JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+
+    147    1.2%  __mmap
+     12    8.2%    JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      8   66.7%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      8  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      8  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      4   33.3%      JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      2   50.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      2  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      2  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      2   50.0%        JS: *_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      2  100.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      2  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      6    4.1%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+      6  100.0%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      5   83.3%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      5  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      5  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      1   16.7%        JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1  100.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+
+    134    1.1%  __pthread_cond_signal
+      2    1.5%    JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      2  100.0%      JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      2  100.0%        Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      2    1.5%    JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+      2  100.0%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      2  100.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      2  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      2  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+
+    128    1.0%  JS: *<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:75:53
+    119   93.0%    JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     79   66.4%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     79  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     79  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     40   33.6%      JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     24   60.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     24  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+     24  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+     16   40.0%        JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+     10   62.5%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+     10  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      6   37.5%          JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      4   66.7%            JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      2   33.3%            JS: ^_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      9    7.0%    JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      5   55.6%      JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      4   80.0%        JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      4  100.0%          JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      4  100.0%            Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+      1   20.0%        JS: ~_fillspace file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:70:15
+      1  100.0%          JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      1  100.0%            JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      4   44.4%      JS: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:43:30
+      4  100.0%        JS: ~process_one file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/world.js:40:16
+      4  100.0%          Script: ~<anonymous> file:///home/matthew/github.com/filscentia/aoc-2024/07/ts/dist/main.js:1:1
+
