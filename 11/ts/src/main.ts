@@ -22,7 +22,6 @@ try {
     w.print();
 
     logger.info(`???? :: ${w.process_one()}`);
-
     logger.info(`???? :: ${w.process_two()}`);
 } catch (e) {
     logger.error(e);

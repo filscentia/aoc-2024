@@ -1,75 +1,57 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import fs from 'node:fs/promises';
 import { logger } from './services/logger.js';
-import { AnyNaptrRecord } from 'node:dns';
+import { nextTick, sourceMapsEnabled } from 'node:process';
+import { runInThisContext } from 'node:vm';
 
-type Antenna = {
-    x: number;
-    y: number;
-    freq: string;
-    antinodes_freq: string[];
-};
-
-const antenna_str = (a: Antenna) => {
-    return '[' + a.freq + ':' + a.antinodes_freq.join('') + ']';
-};
-
-const antenna_same = (a: Antenna, b: Antenna) => {
-    return a.x == b.x && a.y == b.y && a.freq == b.freq;
-};
-
-type Offset = {
-    x: number;
-    y: number;
-};
-
-const antenna_offset = (a: Antenna, b: Antenna) => {
-    return {
-        x: a.x - b.x,
-        y: a.y - b.y,
-    };
-};
-
-type Map = {
-    antennas: Array<Array<Antenna>>;
-    max_x: number;
-    max_y: number;
+type Block = {
+    fileid: number;
+    size: number;
+    moved: boolean;
+    index: number;
 };
 
 export class World {
     dataFilename: string;
-
-    antennaLookup: { [key: string]: Antenna[] } = {};
-
     constructor(dataFilename: string) {
         this.dataFilename = dataFilename;
     }
 
-    originalMap: Map = { antennas: [], max_x: 0, max_y: 0 };
+    diskmap: Array<Block> = [];
+    fileMap: Array<Block> = [];
+
+    diskmap2: Array<Block> = [];
 
     async readFile(): Promise<World> {
         try {
             const data = await fs.readFile(this.dataFilename, { encoding: 'utf8' });
-            const map: Map = { antennas: [], max_x: 0, max_y: 0 };
-            const lines = data.split('\n');
-            lines.forEach((l, y) => {
-                const a_list = l.split('').map((a, x) => {
-                    const tempA = { x: x, y: y, freq: a, antinodes_freq: [] } as Antenna;
-                    if (/^[A-Za-z\d]+$/.test(a)) {
-                        if (!this.antennaLookup[a]) {
-                            this.antennaLookup[a] = [];
-                        }
-                        this.antennaLookup[a].push(tempA);
-                    }
-                    return tempA;
-                });
+            let isFile = true;
+            let fileidCounter = 0;
 
-                map.antennas.push(a_list);
+            data.split('').forEach((l, y) => {
+                let newBlock;
+                const size = parseInt(l);
+                if (isFile) {
+                    newBlock = { fileid: fileidCounter, size, moved: false, index: -1 };
+
+                    this.fileMap.push(newBlock);
+
+                    fileidCounter++;
+                } else {
+                    newBlock = { fileid: -1, size, moved: false, index: -1 };
+                }
+                isFile = !isFile;
+
+                for (let x = 0; x < size; x++) {
+                    this.diskmap.push(newBlock);
+                    this.diskmap2.push(newBlock);
+                }
             });
 
-            map.max_y = lines.length;
-            map.max_x = map.antennas.length;
-            this.originalMap = map;
+            this.diskmap2 = this.diskmap2.map((x, index) => {
+                x.index = index;
+                return x;
+            });
         } catch (err) {
             throw err;
         }
@@ -77,42 +59,113 @@ export class World {
         return this;
     }
 
-    public print(map: Map = this.originalMap) {
-        map.antennas.forEach((y) => {
-            logger.info(y.map((x) => antenna_str(x)).join('\t'));
-        });
+    public print(diskmap: Array<Block> = this.diskmap) {
+        // logger.info('.123456789.123456789.123456789.123456789.123456789.123456789.123456789');
+        logger.info(diskmap.map((x) => (x.fileid == -1 ? '.' : '' + x.fileid)).join(''));
+    }
+
+    getNextEmpty(index: number = -1) {
+        if (index >= this.diskmap.length) {
+            return -1;
+        }
+        index++;
+        while (this.diskmap[index].fileid != -1) {
+            index++;
+            if (index >= this.diskmap.length) {
+                return -1;
+            }
+        }
+        return index;
+    }
+
+    getLastBlock(lastBlockIndex: number = this.diskmap.length - 1) {
+        let index = lastBlockIndex;
+
+        while (this.diskmap[index].fileid == -1) {
+            index--;
+        }
+
+        return index;
+    }
+
+    copy(b: Block): Block {
+        return { fileid: b.fileid, size: b.size, moved: false, index: -1 };
     }
 
     process_one(): number {
         logger.info('process one');
         let result = 0;
 
-        for (const freq in this.antennaLookup) {
-            const antennas = this.antennaLookup[freq];
-            antennas.forEach((first) => {
-                antennas.forEach((second) => {
-                    if (!antenna_same(first, second)) {
-                        const offset = antenna_offset(first, second);
-                        let offMap = false;
-                        let m = 0;
-                        while (!offMap) {
-                            const ax = first.x + offset.x * m;
-                            const ay = first.y + offset.y * m;
-                            if (ax >= 0 && ax < this.originalMap.max_x && ay >= 0 && ay < this.originalMap.max_y) {
-                                logger.info(freq + ': ' + offset.x + ' ' + offset.y);
-                                this.originalMap.antennas[ay][ax].antinodes_freq.push('#');
-                            } else {
-                                offMap = true;
-                            }
-                            m++;
-                        }
-                    }
-                });
-            });
+        let currentEmptySpace = this.getNextEmpty();
+        let lastBlockIndex = this.getLastBlock();
+        logger.info(currentEmptySpace + ' ' + lastBlockIndex);
+        while (currentEmptySpace < lastBlockIndex) {
+            this.diskmap[currentEmptySpace] = this.copy(this.diskmap[lastBlockIndex]);
+            this.diskmap[lastBlockIndex] = { fileid: -1, size: -1, moved: false, index: -1 };
+            lastBlockIndex = this.getLastBlock(lastBlockIndex);
+            currentEmptySpace = this.getNextEmpty(currentEmptySpace);
+
+            // this.print();
         }
 
-        this.print();
-        result = this.originalMap.antennas.flatMap((x) => x).filter((x) => x.antinodes_freq.length > 0).length;
+        result = this.diskmap.reduce((sum: number, nextblock: Block, index: number) => {
+            if (nextblock.fileid != -1) {
+                return sum + nextblock.fileid * index;
+            }
+            return sum;
+        }, 0);
+
+        return result;
+    }
+
+    longEnoughFree(index: number, sizeNeeded: number) {
+        // logger.info(index + ' looking for ' + sizeNeeded);
+        let found = 0;
+        for (let x = 0; x < this.diskmap2.length && x < index; x++) {
+            // logger.info(x + ' ' + this.diskmap2[x].fileid);
+            if (this.diskmap2[x].fileid == -1) {
+                found++;
+
+                if (found == sizeNeeded) {
+                    // logger.info('found at ' + x + ' ' + found);
+                    return x - sizeNeeded + 1;
+                }
+            } else {
+                found = 0;
+            }
+        }
+        return -1;
+    }
+
+    _findFileStartIndex(fileid: number) {
+        return this.diskmap2.findIndex((x) => x.fileid == fileid);
+    }
+
+    process_two(): number {
+        logger.info('process two');
+        let result = 0;
+
+        for (let fi = this.fileMap.length - 1; fi >= 0; fi--) {
+            const fileMoving = this.fileMap[fi];
+            const fileStartIndex = this._findFileStartIndex(fileMoving.fileid);
+            const toMoveTo = this.longEnoughFree(fileStartIndex, fileMoving.size);
+            // logger.info('moving.. ' + JSON.stringify(fileMoving) + ' to ' + toMoveTo + ' from ' + fileStartIndex);
+            if (toMoveTo != -1) {
+                for (let x = 0; x < fileMoving.size; x++) {
+                    this.diskmap2[toMoveTo + x] = this.copy(this.diskmap2[fileStartIndex + x]);
+                    // this.diskmap2[toMoveTo + x].moved = true;
+                    this.diskmap2[fileStartIndex + x] = { fileid: -1, size: -1, moved: false, index: -1 };
+                }
+            }
+            // this.print(this.diskmap2);
+        }
+
+        result = this.diskmap2.reduce((sum: number, nextblock: Block, index: number) => {
+            if (nextblock.fileid != -1) {
+                return sum + nextblock.fileid * index;
+            }
+            return sum;
+        }, 0);
 
         return result;
     }

@@ -22,8 +22,7 @@ try {
     w.print();
 
     logger.info(`???? :: ${w.process_one()}`);
-
-    logger.info(`???? :: ${w.process_two()}`);
+    // logger.info(`Routes that cycle :: ${w.process_two()}`);
 } catch (e) {
     logger.error(e);
 }
